@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuxeStay - Grand Hotel</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</head>
+<body class="dark-theme">
+  <!-- Skip to Content Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPvvl5xBf6RGeZEsCsZXlkEio2IqjR0s2kZzLwO1fxPkWmZmQPUbXNKagNIDr_lfVNSQE&usqp=CAU" alt="LuxeStay Logo" class="logo">
+    <button id="themeToggle" class="btn">Toggle Theme (Dark)</button>
+    <button id="themeToggle" class="btn"><a href="homepg.html">Home Page</a></button>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section with Background Image -->
+    <section id="home" class="hero" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+      <div class="hero-content fade-in">
+        <h1>Welcome to LuxeStay</h1>
+        <p id="hero-text">Experience Grandeur & Comfort,feel like your home and surounded with nature ,its been more than 10 year. </p>
+        <button class="btn" onclick="openBookingModal()">Book Your Stay</button>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+      <h2>About LuxeStay</h2>
+      <p>LuxeStay is a premier destination for luxury and relaxation. Nestled in the heart of the city, our hotel offers world-class amenities, exquisite dining, and unparalleled service to make your stay unforgettable,customer may satisfy to stay in hotel,unlimited wifi,more events to enjoy and also have luxury rooms and grand graint you relax feel free to ask any questions</p>
+      <img src="https://media.istockphoto.com/id/903417402/photo/luxury-construction-hotel-with-swimming-pool-at-sunset.jpg?s=612x612&w=0&k=20&c=NyPC_c-wE3W_CImA4t57FpyGy6f428CYROd80jxVC4A=" alt="Hotel Exterior" class="section-img circle-img">
+    </section>
+
+    <!-- Room Availability Checker -->
+    <section id="availability">
+      <h2>Check Availability</h2>
+      <form id="availabilityForm">
+        <label for="checkinDate">Check-In:</label>
+        <input type="date" id="checkinDate" required>
+        <label for="checkoutDate">Check-Out:</label>
+        <input type="date" id="checkoutDate" required>
+        <button type="submit" class="btn">Check Now</button>
+      </form>
+      <p id="availabilityResult"></p>
+      <div id="availabilityCalendar" class="calendar">
+        <h3>Availability Calendar</h3>
+        <p>(Placeholder: Integrate a dynamic calendar here)</p>
+      </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms">
+      <h2>Our Rooms</h2>
+      <button class="btn" onclick="refreshOccupancy()">Refresh Occupancy</button>
+      <div class="room-container">
+        <div class="room-card" data-room-id="deluxe">
+          <img src="https://imagery.hoteltonight.com/production/attachments/files/13085263/original_normalized.jpg?fit=crop&dpr=1&fm=pjpg&q=50&w=375&h=315" alt="Deluxe Room" onclick="openLightbox('https://cdn.prod.website-files.com/61a398cf488ebf72df8afc86/65969ae5b9c7af5803700ea4_red-rock-casino-resort-spa-luxury-king-strip-view.webp')">
+          <h3>Deluxe Room</h3>
+          <p class="price">$250/night</p>
+          <p class="status available">Available</p>
+          <p class="capacity">Max Guests: 2</p>
+          <div class="rating">★★★★☆ (4.5/5)</div>
+          <div class="amenities">
+            <h4>Amenities:</h4>
+            <ul>
+              <li>Wi-Fi</li>
+              <li>Smart TV</li>
+              <li>Mini-Bar</li>
+              <li>Room Service</li>
+            </ul>
+          </div>
+          <button class="btn" onclick="openBookingModal()">Book Now</button>
+          <button class="btn tour-btn" onclick="openVirtualTour()">Virtual Tour</button>
+          <button class="btn toggle-btn" onclick="toggleAvailability('deluxe')">Toggle Availability</button>
+          <button class="btn upgrade-btn" onclick="suggestUpgrade('deluxe')">Upgrade to Suite</button>
+        </div>
+        <div class="room-card" data-room-id="suite">
+          <img src="https://www.thehari.com/hong-kong/wp-content/uploads/sites/5/2024/02/The-Hari-Suite-Balcony-Night-1-1367x908.webp" alt="Grand Suite" onclick="openLightbox('https://www.thehari.com/hong-kong/wp-content/uploads/sites/5/2020/06/The-Hari-Suite-Balcony-Night-2-1-1367x912.webp')">
+          <h3>Grand Suite</h3>
+          <p class="price">$450/night</p>
+          <p class="status occupied">Occupied</p>
+          <p class="capacity">Max Guests: 4</p>
+          <div class="rating">★★★★★ (5/5)</div>
+          <div class="amenities">
+            <h4>Amenities:</h4>
+            <ul>
+              <li>Wi-Fi</li>
+              <li>Smart TV</li>
+              <li>Mini-Bar</li>
+              <li>Jacuzzi</li>
+              <li>Private Balcony</li>
+            </ul>
+          </div>
+          <button class="btn" onclick="openBookingModal()">Book Now</button>
+          <button class="btn tour-btn" onclick="openVirtualTour()">Virtual Tour</button>
+          <button class="btn toggle-btn" onclick="toggleAvailability('suite')">Toggle Availability</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Room Comparison Tool -->
+    <section id="compare-rooms">
+      <h2>Compare Rooms</h2>
+      <div class="compare-container">
+        <select id="room1" class="compare-select">
+          <option value="deluxe">Deluxe Room</option>
+          <option value="suite">Grand Suite</option>
+        </select>
+        <select id="room2" class="compare-select">
+          <option value="suite">Grand Suite</option>
+          <option value="deluxe">Deluxe Room</option>
+        </select>
+        <button class="btn" onclick="compareRooms()">Compare</button>
+      </div>
+      <div id="comparisonResult"></div>
+    </section>
+
+    <!-- Order Menu Section with New Features -->
+    <section id="menu">
+      <h2>Our Menu</h2>
+      <div class="menu-controls">
+        <!-- Filters -->
+        <div class="menu-filter">
+          <button class="btn filter-btn active" data-filter="all">All</button>
+          <button class="btn filter-btn" data-filter="vegetarian">Vegetarian</button>
+          <button class="btn filter-btn" data-filter="non-vegetarian">Non-Vegetarian</button>
+          <button class="btn filter-btn" data-filter="chinese">Chinese</button>
+          <button class="btn filter-btn" data-filter="desserts">Desserts</button>
+          <button class="btn filter-btn" data-filter="cakes">Cakes</button>
+        </div>
+        <!-- Dietary Filters -->
+        <div class="dietary-filter">
+          <label><input type="checkbox" data-dietary="gluten-free"> Gluten-Free</label>
+          <label><input type="checkbox" data-dietary="vegan"> Vegan</label>
+          <label><input type="checkbox" data-dietary="nut-free"> Nut-Free</label>
+        </div>
+        <!-- New Features: Search and Sort -->
+        <div class="menu-tools">
+          <input type="text" id="menuSearch" placeholder="Search menu..." aria-label="Search menu items">
+          <select id="priceSort" aria-label="Sort by price">
+            <option value="default">Sort by: Default</option>
+            <option value="low-to-high">Price: Low to High</option>
+            <option value="high-to-low">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="menu-list" id="menuList">
+        <!-- Vegetarian -->
+        <h3 class="category-title">Vegetarian</h3>
+        <div class="menu-item" data-category="vegetarian" data-dietary="vegan" data-price="15" data-available="true">
+          <img src="https://natashaskitchen.com/wp-content/uploads/2020/08/Vegetable-Stir-Fry-2.jpg" alt="Vegetable Stir Fry" height="250px">
+          <div class="menu-details">
+            <h4>Vegetable Stir Fry</h4>
+            <p class="price">$15</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Vegetable Stir Fry', 15, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Vegetable Stir Fry')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Vegetable Stir Fry')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="vegetarian" data-dietary="gluten-free" data-price="18" data-available="true">
+          <img src="https://spicecravings.com/wp-content/uploads/2020/10/Paneer-Tikka-Featured-1.jpg" alt="Paneer Tikka">
+          <div class="menu-details">
+            <h4>Paneer Tikka</h4>
+            <p class="price">$18</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Paneer Tikka', 18, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Paneer Tikka')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Paneer Tikka')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="vegetarian" data-dietary="vegan" data-price="16" data-available="true">
+          <img src="https://www.connoisseurusveg.com/wp-content/uploads/2023/02/vegan-pasta-primavera-23-sq.jpg" alt="Vegan Pasta">
+          <div class="menu-details">
+            <h4>Vegan Pasta</h4>
+            <p class="price">$16</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Vegan Pasta', 16, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Vegan Pasta')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Vegan Pasta')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="vegetarian" data-dietary="nut-free" data-price="20" data-available="true">
+          <img src="https://www.sandravalvassori.com/wp-content/uploads/2024/02/Risotto-Mushroom-2-352.jpg" alt="Mushroom Risotto"height="250px">
+          <div class="menu-details">
+            <h4>Mushroom Risotto</h4>
+            <p class="price">$20</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Mushroom Risotto', 20, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Mushroom Risotto')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Mushroom Risotto')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="vegetarian" data-dietary="gluten-free" data-price="17" data-available="true">
+          <img src="https://img.hellofresh.com/f_auto,fl_lossy,q_auto,w_1200/hellofresh_s3/image/protein-packed-chicken-quinoa-salad-2071985f-fc4b0a17.jpg" alt="Quinoa Salad"height="250px">
+          <div class="menu-details">
+            <h4>Quinoa Salad</h4>
+            <p class="price">$17</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Quinoa Salad', 17, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Quinoa Salad')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Quinoa Salad')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="vegetarian" data-dietary="vegan" data-price="14" data-available="true">
+          <img src="https://www.noracooks.com/wp-content/uploads/2018/11/square-1.jpg" alt="Lentil Soup">
+          <div class="menu-details">
+            <h4>Lentil Soup</h4>
+            <p class="price">$14</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Lentil Soup', 14, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Lentil Soup')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Lentil Soup')">Toggle Availability</button>
+          </div>
+        </div>
+
+        <!-- Non-Vegetarian -->
+        <h3 class="category-title">Non-Vegetarian</h3>
+        <div class="menu-item" data-category="non-vegetarian" data-dietary="nut-free" data-price="25" data-available="true">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk1BBovn0Ea0nW-fDMZ4XxdPNPWuEYKit_9Q&s" alt="Grilled Salmon">
+          <div class="menu-details">
+            <h4>Grilled Salmon</h4>
+            <p class="price">$25</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Grilled Salmon', 25, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Grilled Salmon')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Grilled Salmon')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="non-vegetarian" data-dietary="gluten-free" data-price="22" data-available="true">
+          <img src="https://www.tegel.co.nz/media/283665/chickensatayskewers_2-min.jpg?crop=0,0.043333333333333335,0,0.0040893470790376793&cropmode=percentage&width=970&height=616&rnd=133506632620000000" alt="Chicken Skewers"height="250px">
+          <div class="menu-details">
+            <h4>Chicken Skewers</h4>
+            <p class="price">$22</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Chicken Skewers', 22, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Chicken Skewers')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Chicken Skewers')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="non-vegetarian" data-dietary="nut-free" data-price="30" data-available="true">
+          <img src="https://kitchenconfidante.com/wp-content/uploads/2022/05/Angus-Beef-Steak-Recipe-with-Garlic-Herb-Compound-Butter-kitchenconfidante.com-2745-FEATURED-IMAGE.jpg" alt="Beef Steak"height="250px">
+          <div class="menu-details">
+            <h4>Beef Steak</h4>
+            <p class="price">$30</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Beef Steak', 30, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Beef Steak')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Beef Steak')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="non-vegetarian" data-dietary="gluten-free" data-price="28" data-available="true">
+          <img src="https://www.seriouseats.com/thmb/7krlJdfnpXB53aqHg-vBSHjiDPc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/perfectly-grilled-lamb-rib-or-loin-chops-recipe-hero-03-262fe2defc7c491688cb2d363dad3446.JPG" alt="Lamb Chops"height="250px">
+          <div class="menu-details">
+            <h4>Lamb Chops</h4>
+            <p class="price">$28</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Lamb Chops', 28, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Lamb Chops')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Lamb Chops')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="non-vegetarian" data-dietary="nut-free" data-price="24" data-available="true">
+          <img src="https://cdn.jwplayer.com/v2/media/hPcMnXp7/thumbnails/mCITeuJc.jpg" alt="Shrimp Scampi"height="250px">
+          <div class="menu-details">
+            <h4>Shrimp Scampi</h4>
+            <p class="price">$24</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Shrimp Scampi', 24, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Shrimp Scampi')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Shrimp Scampi')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="non-vegetarian" data-dietary="gluten-free" data-price="26" data-available="true">
+          <img src="https://www.thespruceeats.com/thmb/0UIILDTRSdearcDYvzfmtsqRHSw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chinese-style-ribs-335846-hero-01-b51e3bfa4fff42cfafcace9d633ee944.JPG" alt="Pork Ribs"height="250px">
+          <div class="menu-details">
+            <h4>Pork Ribs</h4>
+            <p class="price">$26</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Pork Ribs', 26, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Pork Ribs')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Pork Ribs')">Toggle Availability</button>
+          </div>
+        </div>
+
+        <!-- Chinese -->
+        <h3 class="category-title">Chinese</h3>
+        <div class="menu-item" data-category="chinese" data-dietary="vegan" data-price="14" data-available="true">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37POdbtXgs2mDqS_b8jAguEzA4hWbenNp3w&s" alt="Vegetable Fried Rice"height="250px">
+          <div class="menu-details">
+            <h4>Vegetable Fried Rice</h4>
+            <p class="price">$14</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Vegetable Fried Rice', 14, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Vegetable Fried Rice')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Vegetable Fried Rice')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="chinese" data-dietary="nut-free" data-price="19" data-available="true">
+          <img src="https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480_1_5x/img/recipe/ras/Assets/188353BD-9C50-4D76-86E6-A45F525119CF/Derivates/71FB3CEC-4C97-479C-8D6B-354B4EFB513E.jpg" alt="Kung Pao Chicken"height="250px">
+          <div class="menu-details">
+            <h4>Kung Pao Chicken</h4>
+            <p class="price">$19</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Kung Pao Chicken', 19, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Kung Pao Chicken')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Kung Pao Chicken')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="chinese" data-dietary="gluten-free" data-price="21" data-available="true">
+          <img src="https://www.justataste.com/wp-content/uploads/2018/04/beef-broccoli-sauce-1.jpg" alt="Beef with Broccoli"height="250px">
+          <div class="menu-details">
+            <h4>Beef with Broccoli</h4>
+            <p class="price">$21</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Beef with Broccoli', 21, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Beef with Broccoli')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Beef with Broccoli')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="chinese" data-dietary="vegan" data-price="17" data-available="true">
+          <img src="https://rainbowplantlife.com/wp-content/uploads/2023/01/tofu-stir-fry-cover-photo-1-of-1.jpg" alt="Tofu Stir Fry"height="250px">
+          <div class="menu-details">
+            <h4>Tofu Stir Fry</h4>
+            <p class="price">$17</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Tofu Stir Fry', 17, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Tofu Stir Fry')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Tofu Stir Fry')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="chinese" data-dietary="nut-free" data-price="20" data-available="true">
+          <img src="https://carmyy.com/wp-content/uploads/2022/07/sweet-and-sour-pork-11.jpg" alt="Sweet and Sour Pork"height="250px">
+          <div class="menu-details">
+            <h4>Sweet and Sour Pork</h4>
+            <p class="price">$20</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Sweet and Sour Pork', 20, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Sweet and Sour Pork')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Sweet and Sour Pork')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="chinese" data-dietary="gluten-free" data-price="18" data-available="true">
+          <img src="https://s23209.pcdn.co/wp-content/uploads/2014/04/IMG_3927edit.jpg" alt="Shrimp Fried Rice"height="250px">
+          <div class="menu-details">
+            <h4>Shrimp Fried Rice</h4>
+            <p class="price">$18</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Shrimp Fried Rice', 18, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Shrimp Fried Rice')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Shrimp Fried Rice')">Toggle Availability</button>
+          </div>
+        </div>
+
+        <!-- Desserts -->
+        <h3 class="category-title">Desserts</h3>
+        <div class="menu-item" data-category="desserts" data-dietary="gluten-free" data-price="12" data-available="true">
+          <img src="https://www.melskitchencafe.com/wp-content/uploads/2023/01/updated-lava-cakes7.jpg" alt="Chocolate Lava Cake"height="250px">
+          <div class="menu-details">
+            <h4>Chocolate Lava Cake</h4>
+            <p class="price">$12</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Chocolate Lava Cake', 12, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Chocolate Lava Cake')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Chocolate Lava Cake')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="desserts" data-dietary="vegan" data-price="10" data-available="true">
+          <img src="https://blissfulscoops.com/wp-content/uploads/2024/03/vegan-lemon-sorbet-ice-cream-recipe.webp" alt="Vegan Lemon Sorbet"height="250px">
+          <div class="menu-details">
+            <h4>Vegan Lemon Sorbet</h4>
+            <p class="price">$10</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Vegan Lemon Sorbet', 10, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Vegan Lemon Sorbet')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Vegan Lemon Sorbet')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="desserts" data-dietary="nut-free" data-price="11" data-available="true">
+          <img src="https://www.recipetineats.com/tachyon/2016/09/Creme-Brulee_8-SQ.jpg" alt="Creme Brulee"height="250px">
+          <div class="menu-details">
+            <h4>Creme Brulee</h4>
+            <p class="price">$11</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Creme Brulee', 11, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Creme Brulee')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Creme Brulee')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="desserts" data-dietary="gluten-free" data-price="13" data-available="true">
+          <img src="https://www.culinaryhill.com/wp-content/uploads/2023/07/Fresh-Fruit-Tart-Culinary-Hill-1200x-800-500x500.jpg" alt="Fresh Fruit Tart"height="250px">
+          <div class="menu-details">
+            <h4>Fresh Fruit Tart</h4>
+            <p class="price">$13</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Fresh Fruit Tart', 13, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Fresh Fruit Tart')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Fresh Fruit Tart')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="desserts" data-dietary="vegan" data-price="9" data-available="true">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlPCSz6KnvdtJvrGpxJ_b6fP0rLwXh0krQROiBEKdJXib1dzRAunudBfd2XXKNPH7msXI&usqp=CAU" alt="Coconut Pudding"height="250px">
+          <div class="menu-details">
+            <h4>Coconut Pudding</h4>
+            <p class="price">$9</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Coconut Pudding', 9, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Coconut Pudding')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Coconut Pudding')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="desserts" data-dietary="nut-free" data-price="14" data-available="true">
+          <img src="https://tropolite.com/media/blogs/update_2000x_VcIPO8v.webp" alt="Tiramisu">
+          <div class="menu-details">
+            <h4>Tiramisu</h4>
+            <p class="price">$14</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Tiramisu', 14, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Tiramisu')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Tiramisu')">Toggle Availability</button>
+          </div>
+        </div>
+
+        <!-- Cakes -->
+        <h3 class="category-title">Cakes</h3>
+        <div class="menu-item" data-category="cakes" data-dietary="nut-free" data-price="15" data-available="true">
+          <img src="https://www.foodandwine.com/thmb/rHA0d1aIMTwcxoRrTlqehLgzLUE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/HD-fw200609_trufflecake-1f285ff1b07944d7ae5ceee94211bd9d.jpg" alt="Chocolate Layer Cake"height="250px">
+          <div class="menu-details">
+            <h4>Chocolate Layer Cake</h4>
+            <p class="price">$15</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Chocolate Layer Cake', 15, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Chocolate Layer Cake')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Chocolate Layer Cake')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="cakes" data-dietary="vegan" data-price="14" data-available="true">
+          <img src="https://www.rainbownourishments.com/wp-content/uploads/2023/03/vegan-carrot-cake-1.jpg" alt="Vegan Carrot Cake"height="250px">
+          <div class="menu-details">
+            <h4>Vegan Carrot Cake</h4>
+            <p class="price">$14</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Vegan Carrot Cake', 14, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Vegan Carrot Cake')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Vegan Carrot Cake')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="cakes" data-dietary="gluten-free" data-price="16" data-available="true">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS67ulL0dFYbbOWKGguE_wDqtoj6l7tu9QsiA&s" alt="Gluten-Free Cheesecake"height="250px">
+          <div class="menu-details">
+            <h4>Gluten-Free Cheesecake</h4>
+            <p class="price">$16</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Gluten-Free Cheesecake', 16, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Gluten-Free Cheesecake')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Gluten-Free Cheesecake')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="cakes" data-dietary="nut-free" data-price="15" data-available="true">
+          <img src="https://i0.wp.com/pediaa.com/wp-content/uploads/2021/03/Difference-Between-Red-Velvet-and-Chocolate-Cake_-1.jpg?resize=553%2C415&ssl=1" alt="Red Velvet Cake"height="250px">
+          <div class="menu-details">
+            <h4>Red Velvet Cake</h4>
+            <p class="price">$15</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Red Velvet Cake', 15, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Red Velvet Cake')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Red Velvet Cake')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="cakes" data-dietary="vegan" data-price="14" data-available="true">
+          <img src="https://www.thecuriouschickpea.com/wp-content/uploads/2018/07/chocolatecake-3.jpg.webp" alt="Vegan Chocolate Cake"height="250px">
+          <div class="menu-details">
+            <h4>Vegan Chocolate Cake</h4>
+            <p class="price">$14</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Vegan Chocolate Cake', 14, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Vegan Chocolate Cake')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Vegan Chocolate Cake')">Toggle Availability</button>
+          </div>
+        </div>
+        <div class="menu-item" data-category="cakes" data-dietary="gluten-free" data-price="13" data-available="true">
+          <img src="https://www.gillsbakesandcakes.com/wp-content/uploads/2021/07/lemon-drizzle-scaled.jpg" alt="Lemon Drizzle Cake"height="250px">
+          <div class="menu-details">
+            <h4>Lemon Drizzle Cake</h4>
+            <p class="price">$13</p>
+            <p class="availability available">In Stock</p>
+            <select class="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="btn" onclick="addToCart('Lemon Drizzle Cake', 13, this)">Add to Cart</button>
+            <button class="btn customize-btn" onclick="openCustomizeModal('Lemon Drizzle Cake')">Customize</button>
+            <button class="btn toggle-availability-btn" onclick="toggleItemAvailability('Lemon Drizzle Cake')">Toggle Availability</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart">
+        <h3>Your Cart</h3>
+        <div id="cartItems"></div>
+        <p>Total: $<span id="cartTotal">0</span></p>
+        <button class="btn" onclick="openOrderModal()">Place Order</button>
+        <button class="btn" onclick="clearCart()">Clear Cart</button>
+      </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section id="offers">
+      <h2>Special Offers</h2>
+      <div class="offer-container">
+        <div class="offer-card">
+          <h3>Weekend Getaway</h3>
+          <p>Book a 2-night stay and get 20% off!</p>
+          <p><strong>Promo Code:</strong> LUXE25</p>
+          <button class="btn" onclick="openBookingModal()">Claim Offer</button>
+        </div>
+        <div class="offer-card">
+          <h3>Dine & Stay</h3>
+          <p>Enjoy a free dinner for two with any suite booking.</p>
+          <p><strong>Promo Code:</strong> STAY10</p>
+          <button class="btn" onclick="openBookingModal()">Claim Offer</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://media.istockphoto.com/id/1181456782/photo/3d-render-of-luxury-hotel-lobby-and-reception.jpg?s=612x612&w=0&k=20&c=w5yIBYGq0-yPeM-_exf0paBcm6mtZB2qYaUlKQwQBrA=" alt="Hotel Lobby" onclick="openLightbox('https://t4.ftcdn.net/jpg/02/77/68/55/360_F_277685543_bZy10zzHIR8wjLRd5NUCgYMZQadEDGWe.jpg')"height="250px">
+        <img src="https://evolveartisanal.com/wp-content/uploads/2021/07/2-_-Designs-That-Are-Class-Apart-Modern-Bedroom-Interior-Design.jpg" alt="Suite Room" onclick="openLightbox('https://img.freepik.com/premium-photo/luxury-classic-modern-bedroom-suite-hotel_105762-1903.jpg')"height="250px">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM5couSZ3iPAenslQfxYq31kyRL8UCTnsCIg&s" alt="Dining Area" onclick="openLightbox('https://img.freepik.com/premium-photo/beautiful-interior-restaurant-modern-hotel-with-white-cloth-tables-soft-chairs-serving-tables-with-live-roses-3d-rendering_295714-4094.jpg')"height="250px">
+        <img src="https://images.trvl-media.com/lodging/4000000/3020000/3010700/3010664/aa857f0e.jpg?impolicy=fcrop&w=357&h=201&p=1&q=medium" alt="Pool" onclick="openLightbox('https://www.omnihotels.com/-/media/images/hotels/okcdtn/hotel/okcdtn-omni-oklahoma-city-pool-cabana.jpg?h=660&iar=1&w=1170')"height="250px">
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+      <h2>Guest Testimonials</h2>
+      <div id="testimonialContainer" class="testimonial-container">
+        <div class="testimonial" data-sentiment="positive">
+          <img src="https://www.welcomeware.live/wp-content/uploads/2022/07/hotel-receptionist-assisting-the-guest.jpg" alt="Guest" class="guest-img">
+          <p>"An amazing stay with top-notch service!"</p>
+          <h4>- jessy</h4>
+          <p class="sentiment">Sentiment: Positive</p>
+        </div>
+        <div class="testimonial" data-sentiment="positive">
+          <img src="https://ingenico.com/sites/default/files/styles/width_1248/public/blogs-import/front%2520desk%2520man%252.jpg.webp?itok=FhQ6Wi-i" alt="Guest" class="guest-img">
+          <p>"The food and ambiance were exceptional."</p>
+          <h4>- John Smith</h4>
+          <p class="sentiment">Sentiment: Positive</p>
+        </div>
+      </div>
+      <form id="reviewForm" class="review-form">
+        <h3>Leave a Review</h3>
+        <label for="reviewName">Name:</label>
+        <input type="text" id="reviewName" required>
+        <label for="reviewText">Review:</label>
+        <textarea id="reviewText" required></textarea>
+        <button type="submit" class="btn">Submit Review</button>
+      </form>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <label for="contactName">Name:</label>
+        <input type="text" id="contactName" required>
+        <label for="contactEmail">Email:</label>
+        <input type="email" id="contactEmail" required>
+        <label for="contactMessage">Message:</label>
+        <textarea id="contactMessage" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <div class="contact-info">
+        <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+        <p><strong>Email:</strong> info@luxestay.com</p>
+        <p><strong>Address:</strong> 123 Grand Ave, San Francisco, CA</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="newsletter">
+        <h3>Subscribe to Our Newsletter</h3>
+        <form id="newsletterForm">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit" class="btn">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-info">
+        <p><strong>Location:</strong> 123 Grand Ave, San Francisco, CA 94105, USA</p>
+      </div>
+      <div class="social-links">
+        <a href="https://wa.me/15551234567" target="_blank" aria-label="WhatsApp">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="WhatsApp">
+        </a>
+        <a href="https://instagram.com/luxestayhotel" target="_blank" aria-label="Instagram">
+          <img src="https://cdn.pixabay.com/photo/2021/06/15/12/14/instagram-6338393_1280.png" alt="Instagram">
+        </a>
+        <a href="https://twitter.com/luxestayhotel" target="_blank" aria-label="Twitter">
+          <img src="https://instantlogodesign.com/blog/wp-content/uploads/2023/01/twitter-bird-icon-1024x538.jpg" alt="Twitter">
+        </a>
+        <a href="https://facebook.com/luxestayhotel" target="_blank" aria-label="Facebook">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png" alt="Facebook">
+        </a>
+      </div>
+      <p>© 2025 LuxeStay. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeBookingModal()">×</span>
+      <h2>Book Your Stay</h2>
+      <form id="bookingForm">
+        <label for="checkin">Check-In:</label>
+        <input type="date" id="checkin" required>
+        <label for="checkout">Check-Out:</label>
+        <input type="date" id="checkout" required>
+        <label for="guests">Guests:</label>
+        <input type="number" id="guests" min="1" required>
+        <label for="promoCode">Promo Code:</label>
+        <input type="text" id="promoCode">
+        <label for="specialRequests">Special Requests:</label>
+        <textarea id="specialRequests"></textarea>
+        <button type="submit" class="btn">Submit Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeOrderModal()">×</span>
+      <h2>Order Confirmation</h2>
+      <div id="orderSummary"></div>
+      <button class="btn" onclick="confirmOrder()">Confirm Order</button>
+    </div>
+  </div>
+
+  <div id="customizeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCustomizeModal()">×</span>
+      <h2>Customize Your Dish: <span id="customizeDishName"></span></h2>
+      <form id="customizeForm">
+        <label for="customInstructions">Special Instructions:</label>
+        <textarea id="customInstructions" placeholder="E.g., No onions, extra spicy"></textarea>
+        <button type="submit" class="btn">Save Customization</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">×</span>
+    <img id="lightbox-img" src="" alt="Lightbox Image">
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" onclick="scrollToTop()">⬆</button>
+
+  <!-- Live Chat -->
+  <button id="chatBtn" class="chat-btn" onclick="openChat()">💬</button>
+  <div id="liveChat" class="chat-window">
+    <div class="chat-header">
+      <h3>Live Chat</h3>
+      <span class="close" onclick="closeChat()">×</span>
+    </div>
+    <div class="chat-body"></div>
+    <form id="chatForm" class="chat-form">
+      <input type="text" id="chatMessage" placeholder="Type your message..." required>
+      <button type="submit" class="btn">Send</button>
+    </form>
+  </div>
+
+  <!-- Loyalty Points -->
+  <div id="loyaltyPoints" class="loyalty-display">
+    <p id="pointsDisplay">Current Points: 0</p>
+    <button class="btn" onclick="redeemPoints()">Redeem Points</button>
+    <p>Total Bookings: <span id="bookingCount">0</span></p>
+    <p>Total Orders: <span id="orderCount">0</span></p>
+  </div>
+
+  <!-- Dynamic Clock -->
+  <div id="clock" class="clock">
+    <p>India Time: <span id="timeDisplay"></span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
